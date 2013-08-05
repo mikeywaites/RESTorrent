@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  </head>
+  <body>
+    <div class="row">
+        {% raw %}
+            <script type="text/x-handlebars">
+                <div class="navbar">
+                    <a class="navbar-brand" href="#">/RESTorrent</a>
+                    <ul class="nav navbar-nav">
+                        <li>{{#linkTo 'torrents'}}torrents{{/linkTo}}</li>
+                    </ul>
+                    {{#view App.AddTorrentView tagName="form"}}
+                        {{view Ember.TextField class="form-control" style="width: 400px;" name="torrent_url" valueBinding="view.torrentUrl" }}
+                        <button {{action "submitTorrent" target="App.AddTorrentView"}} type="submit" class="btn btn-default navbar-btn">add torrent</button>
+                    {{/view}}
+                </div>
+                {{outlet}}
+            </script>
+            <script type="text/x-handlebars" id="torrents">
+                <div class="col-12 col-sm-8 col-lg-8">
+                    <h3>Torrents</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>id</td>
+                                <td>name</td>
+                            </tr>
+                        </thead>
+                        {{#each model}}
+                            <tr>
+                                <td>{{id}}</td>
+                                <td>{{#linkTo 'torrent' this}}{{name}}{{/linkTo}}</td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4">
+                    {{outlet}}
+                </div>
+            </script>
+            <script type="text/x-handlebars" id="torrent">
+                <h2>{{name}} - {{id}}</h2>
+            </script>
+        {% endraw %}
+    </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="{{ url_for('static', filename='js/libs/jquery-1.9.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libs/handlebars-1.0.0-rc.4.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libs/ember-1.0.0-rc.6.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/libs/ember-data.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+  </body>
+</html>

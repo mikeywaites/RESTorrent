@@ -1,0 +1,12 @@
+Flask==0.10.1
+Flask-Environments==0.1
+Flask-SQLAlchemy==1.0
+Jinja2==2.7
+MarkupSafe==0.18
+PyYAML==3.10
+SQLAlchemy==0.8.2
+Werkzeug==0.9.3
+argparse==1.2.1
+itsdangerous==0.22
+-e git+git@github.com:mikeywaites/RESTorrent.git@984560ad68a6ce650e3045c5fb406b20384b97bf#egg=restorrent-origin/develop
+wsgiref==0.1.2
